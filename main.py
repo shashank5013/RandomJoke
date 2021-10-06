@@ -1,4 +1,4 @@
-from replit import db
+
 import discord
 import os
 import requests 
@@ -7,11 +7,6 @@ import json
 
 
 client=discord.Client()
-
-
-if "responding" not in db.keys():
-  db["responding"] = True
-
 def get_meme():
   response = requests.get("https://meme-api.herokuapp.com/gimme")
   json_object=json.loads(response.text)
@@ -38,9 +33,8 @@ async def on_message(message):
   msg=message.content
   if msg[0]=='$':
     command=msg[1:]
-    if command == "responding":
-      value = msg.split("$responding ", 1)
-    elif command=='meme':
+    
+    if command=='meme':
       await message.channel.send(get_meme())
     elif command =='help':
       await message.channel.send(get_commands())
