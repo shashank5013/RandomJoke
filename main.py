@@ -4,7 +4,7 @@ import discord
 import os
 import requests 
 import json
-
+from keepalive import keep_alive
 
 
 client=discord.Client()
@@ -67,6 +67,6 @@ async def on_message(message):
         await message.channel.send(syntax_error())
 
   
-
+keep_alive()
 client.run(os.environ['TOKEN'])
 
